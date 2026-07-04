@@ -1,7 +1,7 @@
 from typing import Annotated, Any
 
 from langgraph.graph import MessagesState
-from services.ai.langgraph.schemas import ActivityExpertOutputs, MetricsExpertOutputs, PhysiologyExpertOutputs
+from services.ai.langgraph.schemas import ActivityExpertOutputs, MetricsExpertOutputs, MobilityExpertOutputs, PhysiologyExpertOutputs
 
 
 class TrainingAnalysisState(MessagesState):
@@ -22,10 +22,12 @@ class TrainingAnalysisState(MessagesState):
     metrics_summary: str | None
     physiology_summary: str | None
     activity_summary: str | None
+    mobility_summary: str | None
 
     metrics_outputs: MetricsExpertOutputs | None
     activity_outputs: ActivityExpertOutputs | None
     physiology_outputs: PhysiologyExpertOutputs | None
+    mobility_outputs: MobilityExpertOutputs | None
 
     synthesis_result: str | None
 
@@ -54,6 +56,7 @@ class TrainingAnalysisState(MessagesState):
     physiology_expert_messages: Annotated[list, lambda x, y: (x or []) + y]
     season_planner_messages: Annotated[list, lambda x, y: (x or []) + y]
     weekly_planner_messages: Annotated[list, lambda x, y: (x or []) + y]
+    mobility_expert_messages: Annotated[list, lambda x, y: (x or []) + y]
 
 
 def create_initial_state(
@@ -88,9 +91,11 @@ def create_initial_state(
         metrics_summary=None,
         physiology_summary=None,
         activity_summary=None,
+        mobility_summary=None,
         metrics_outputs=None,
         activity_outputs=None,
         physiology_outputs=None,
+        mobility_outputs=None,
         synthesis_result=None,
         season_plan=None,
         weekly_plan=None,
@@ -110,5 +115,6 @@ def create_initial_state(
         physiology_expert_messages=[],
         season_planner_messages=[],
         weekly_planner_messages=[],
+        mobility_expert_messages=[],
         messages=[],
     )

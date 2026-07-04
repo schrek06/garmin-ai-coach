@@ -13,6 +13,7 @@ class AgentRole(Enum):
     WORKOUT = "workout"
     SEASON_PLANNER = "season_planner"
     FORMATTER = "formatter"
+    MOBILITY_EXPERT = "mobility_expert"
 
 
 @dataclass
@@ -27,6 +28,7 @@ class AISettings:
                 AgentRole.METRICS_EXPERT: "gpt-5-search",
                 AgentRole.PHYSIOLOGY_EXPERT: "gpt-5-search",
                 AgentRole.ACTIVITY_EXPERT: "gpt-5-search",
+                AgentRole.MOBILITY_EXPERT: "gpt-5-search",
                 AgentRole.SYNTHESIS: "gpt-5",
                 AgentRole.WORKOUT: "gpt-5-search",
                 AgentRole.SEASON_PLANNER: "gpt-5-search",
@@ -37,6 +39,7 @@ class AISettings:
                 AgentRole.METRICS_EXPERT: "claude-3-haiku",
                 AgentRole.PHYSIOLOGY_EXPERT: "claude-3-haiku",
                 AgentRole.ACTIVITY_EXPERT: "claude-3-haiku",
+                AgentRole.MOBILITY_EXPERT: "claude-3-haiku",
                 AgentRole.SYNTHESIS: "claude-3-haiku",
                 AgentRole.WORKOUT: "claude-3-haiku",
                 AgentRole.SEASON_PLANNER: "claude-3-haiku",
@@ -47,6 +50,7 @@ class AISettings:
                 AgentRole.METRICS_EXPERT: "claude-4",
                 AgentRole.PHYSIOLOGY_EXPERT: "claude-4",
                 AgentRole.ACTIVITY_EXPERT: "claude-4",
+                AgentRole.MOBILITY_EXPERT: "claude-4",
                 AgentRole.SYNTHESIS: "claude-4",
                 AgentRole.WORKOUT: "claude-4",
                 AgentRole.SEASON_PLANNER: "claude-4",
@@ -57,9 +61,21 @@ class AISettings:
                 AgentRole.METRICS_EXPERT: "gpt-5.2-pro-search",
                 AgentRole.PHYSIOLOGY_EXPERT: "gpt-5.2-pro-search",
                 AgentRole.ACTIVITY_EXPERT: "gpt-5.2-pro-search",
+                AgentRole.MOBILITY_EXPERT: "gpt-5.2-pro-search",
                 AgentRole.SYNTHESIS: "gpt-5-search",
                 AgentRole.WORKOUT: "gpt-5.2-pro-search",
                 AgentRole.SEASON_PLANNER: "gpt-5.2-pro-search",
+            },
+            AIMode.LOCAL: {
+                AgentRole.SUMMARIZER: "ollama-local",
+                AgentRole.FORMATTER: "ollama-local",
+                AgentRole.METRICS_EXPERT: "ollama-local",
+                AgentRole.PHYSIOLOGY_EXPERT: "ollama-local",
+                AgentRole.ACTIVITY_EXPERT: "ollama-local",
+                AgentRole.MOBILITY_EXPERT: "ollama-local",
+                AgentRole.SYNTHESIS: "ollama-local",
+                AgentRole.WORKOUT: "ollama-local",
+                AgentRole.SEASON_PLANNER: "ollama-local",
             },
         }
     )

@@ -29,6 +29,8 @@ class ModelSelector:
             return "anthropic"
         elif "openai.com" in base_url:
             return "openai"
+        elif "localhost" in base_url or "127.0.0.1" in base_url:
+            return "ollama"
         else:
             return "openrouter"
 
@@ -148,6 +150,10 @@ class ModelSelector:
         "grok-4": ModelConfiguration(
             name="x-ai/grok-4", base_url=OPENROUTER_BASE_URL
         ),
+        # Local Models (Ollama)
+        "ollama-local": ModelConfiguration(
+            name="command-r", base_url="http://localhost:11434/v1"
+        ),
     }
 
     MODEL_CONFIGS: dict[str, dict[str, Any]] = {
@@ -236,10 +242,16 @@ class ModelSelector:
         final_model_name = selected_config.name
         provider = cls._detect_provider(base_url)
 
+        if model_name == "ollama-local":
+            final_model_name = config.ollama_model
+            base_url = config.ollama_base_url
+            provider = "ollama"
+
         key_map = {
             "anthropic": config.anthropic_api_key,
             "openai": config.openai_api_key,
             "openrouter": config.openrouter_api_key,
+            "ollama": config.ollama_api_key,
         }
 
         api_key = key_map.get(provider)

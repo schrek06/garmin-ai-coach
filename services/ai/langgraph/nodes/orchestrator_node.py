@@ -50,8 +50,8 @@ class ConsoleInteractionProvider:
 class MasterOrchestrator:
     STAGES = {
         "analysis": {
-            "agents": [AgentRole.METRICS_EXPERT.value, AgentRole.PHYSIOLOGY_EXPERT.value, AgentRole.ACTIVITY_EXPERT.value],
-            "result_keys": ["metrics_outputs", "physiology_outputs", "activity_outputs"],
+            "agents": [AgentRole.METRICS_EXPERT.value, AgentRole.PHYSIOLOGY_EXPERT.value, AgentRole.ACTIVITY_EXPERT.value, AgentRole.MOBILITY_EXPERT.value],
+            "result_keys": ["metrics_outputs", "physiology_outputs", "activity_outputs", "mobility_outputs"],
             "next_node": "synthesis",
             "display_name": "Analysis"
         },

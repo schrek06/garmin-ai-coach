@@ -19,6 +19,7 @@ class AIMode(Enum):
     COST_EFFECTIVE = "cost_effective"
     DEVELOPMENT = "development"
     PRO = "pro"
+    LOCAL = "local"
 
 
 @dataclass
@@ -27,6 +28,9 @@ class Config:
     openai_api_key: str | None = None
     deepseek_api_key: str | None = None
     openrouter_api_key: str | None = None
+    ollama_api_key: str | None = None
+    ollama_base_url: str | None = None
+    ollama_model: str | None = None
 
     ai_mode: AIMode = AIMode.STANDARD
 
@@ -36,6 +40,9 @@ class Config:
         openai_api_key = os.getenv("OPENAI_API_KEY")
         deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
         openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+        ollama_api_key = os.getenv("OLLAMA_API_KEY", "ollama")
+        ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+        ollama_model = os.getenv("OLLAMA_MODEL", "command-r")
 
         ai_mode_str = os.getenv("AI_MODE", "standard").lower()
         try:
@@ -56,6 +63,9 @@ class Config:
             openai_api_key=openai_api_key,
             deepseek_api_key=deepseek_api_key,
             openrouter_api_key=openrouter_api_key,
+            ollama_api_key=ollama_api_key,
+            ollama_base_url=ollama_base_url,
+            ollama_model=ollama_model,
         )
 
 

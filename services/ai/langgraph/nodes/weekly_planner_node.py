@@ -37,6 +37,12 @@ Create a detailed 28-day (4-week) training plan.
 - **Integrate Signals**: Use Activity Expert advice for session structure.
 - **Brevity**: Use standard notation (e.g., "4x(5' Z4, 2' r)") to keep the plan compact.
 
+## Tactical Training Split Constraints
+- **Strength Mix**: Exactly 3 heavy compound lifting sessions per week.
+- **Progressive Strength Log**: Mandate specific weight/rep increases if prior Garmin RPE was 'Easy' or 'Moderate'.
+- **Engine Mix**: Exactly 1 100% Tabata session per week, 1 60+ min Z2/Sweet Spot session, and 1 low-intensity "Flush" recovery session on high-stress workdays.
+- **The 18:00+ Window**: Post-workout activities must explicitly list a parasympathetic down-regulation protocol to mitigate late-night cortisol.
+
 ## Inputs
 ### Season Plan
 ```markdown

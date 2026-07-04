@@ -42,3 +42,7 @@ class ActivityExpertOutputs(ExpertOutputBase):
 
 class PhysiologyExpertOutputs(ExpertOutputBase):
     pass
+
+
+class MobilityExpertOutputs(ExpertOutputBase):
+    pass

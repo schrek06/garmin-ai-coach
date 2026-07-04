@@ -22,6 +22,7 @@ from services.ai.langgraph.workflows.planning_workflow import (
 from services.ai.utils.plan_storage import FilePlanStorage
 from services.garmin import ExtractionConfig, TriathlonCoachDataExtractor
 from services.outside.client import OutsideApiGraphQlClient
+from services.db.database import save_analysis_run
 
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -261,6 +262,21 @@ async def run_analysis_from_config(config_path: Path) -> None:
         files_generated.extend(_save_html_outputs(output_dir, result))
         files_generated.extend(_save_expert_outputs(output_dir, result))
         files_generated.extend(_save_plan_outputs(output_dir, result))
+
+        metrics_out = result.get("metrics_outputs")
+        physiology_out = result.get("physiology_outputs")
+        activity_out = result.get("activity_outputs")
+
+        save_analysis_run(
+            execution_id=result.get("execution_id", ""),
+            user_id="cli_user",
+            date=datetime.now().isoformat(),
+            garmin_data=asdict(garmin_data) if hasattr(garmin_data, "__dataclass_fields__") else garmin_data,
+            metrics_summary=json.dumps(metrics_out.model_dump()) if metrics_out else None,
+            physiology_summary=json.dumps(physiology_out.model_dump()) if physiology_out else None,
+            activity_summary=json.dumps(activity_out.model_dump()) if activity_out else None,
+            synthesis_result=result.get("synthesis_result")
+        )
 
         cost_total = float(
             result.get("cost_summary", {}).get("total_cost_usd", 0.0) or

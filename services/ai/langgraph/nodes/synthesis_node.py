@@ -45,6 +45,10 @@ SYNTHESIS_USER_PROMPT_BASE = """Synthesize the expert analyses into a comprehens
 ```markdown
 {physiology_result}
 ```
+### Mobility & Recovery
+```markdown
+{mobility_result}
+```
 ### Context
 - Competitions: ```json {competitions} ```
 - Date: ```json {current_date} ```
@@ -96,6 +100,7 @@ async def synthesis_node(state: TrainingAnalysisState) -> dict[str, list | str]:
                             metrics_result=extract_expert_output(state.get("metrics_outputs"), "for_synthesis"),
                             activity_result=extract_expert_output(state.get("activity_outputs"), "for_synthesis"),
                             physiology_result=extract_expert_output(state.get("physiology_outputs"), "for_synthesis"),
+                            mobility_result=extract_expert_output(state.get("mobility_outputs"), "for_synthesis"),
                             competitions=json.dumps(state["competitions"], indent=2),
                             current_date=json.dumps(state["current_date"], indent=2),
                             style_guide=state["style_guide"],
